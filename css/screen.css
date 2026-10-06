@@ -1,30 +1,25 @@
-/* פריסה: שלוש עמודות מתחת לכותרת. מימין זמני היום, במרכז מודעות ופתגם היום יום,
-   משמאל תפילות ושבת. בתחתית פס חת"ת. כל המידות ב-rem, שמותאם לגודל המסך. */
+/* פריסה: פס צד בצבע טורקיז מימין (זהות, שעון, תאריך, זמני היום),
+   ומשמאלו כרטיסי זכוכית מעל תמונה של יפו: מודעות, תפילות, היום יום, שבת, וחת"ת בתחתית.
+   הקו העיצובי בהשראת "קדמה 360", בצבעים של בית הכנסת (hamaor.co.il).
+   כל המידות ב-rem, שמותאם לגודל המסך. */
 :root {
-  /* הצבעים של אתר בית הכנסת (hamaor.co.il): טורקיז ים, זהב, חול, וצבעי חלון הוויטראז' */
   --ground: hsl(192, 40%, 8%);
-  --panel: hsl(192, 35%, 12%);
-  --panel-raised: hsl(192, 58%, 19%);
-  --line: hsl(192, 28%, 24%);
+  --band: hsla(192, 58%, 20%, 0.94);
+  --glass: hsla(192, 45%, 10%, 0.58);
+  --glass-edge: hsla(40, 33%, 96%, 0.16);
+  --line: hsla(40, 33%, 96%, 0.16);
   --ink: hsl(40, 33%, 96%);
-  --ink-dim: hsl(40, 20%, 72%);
-  --ink-faint: hsl(192, 14%, 46%);
-  --gold: hsl(37, 78%, 56%);
-  --gold-wash: hsla(37, 78%, 56%, 0.15);
-  --gold-line: hsla(37, 78%, 56%, 0.5);
-  --sea: hsl(199, 60%, 42%);
-  --alert: hsl(24, 75%, 58%);
-  /* פס בצבעי החלון: כחול, צהוב, כתום, טורקיז */
-  --glass: linear-gradient(90deg,
-    hsl(205, 70%, 45%) 0 14%, hsl(48, 90%, 58%) 14% 30%, hsl(28, 85%, 55%) 30% 42%,
-    hsl(172, 45%, 60%) 42% 56%, hsl(48, 90%, 58%) 56% 70%, hsl(8, 65%, 50%) 70% 80%,
-    hsl(199, 60%, 42%) 80% 100%);
+  --ink-dim: hsl(40, 20%, 78%);
+  --ink-faint: hsl(40, 10%, 62%);
+  --gold: hsl(37, 78%, 58%);
+  --gold-wash: hsla(37, 78%, 56%, 0.2);
+  --alert: hsl(24, 80%, 62%);
 
   --font-display: 'Frank Ruhl Libre', 'David Libre', 'Times New Roman', serif;
   --font-body: 'Heebo', 'Assistant', 'Arial Hebrew', Arial, sans-serif;
 
-  --gap: 2.2rem;
-  --radius: 1.1rem;
+  --radius: 1.4rem;
+  --gap: 2rem;
 
   color-scheme: dark;
   /* 1rem = 1% מרוחב המסך, אבל לא יותר ממה שגובה המסך מאפשר */
@@ -44,124 +39,131 @@ html, body {
   cursor: none;
 }
 
+/* תמונת הרקע: יפו העתיקה, מוחשכת כדי שהטקסט יהיה קריא */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(hsla(192, 50%, 7%, 0.72), hsla(192, 50%, 7%, 0.8)),
+    url('../img/jaffa.jpg') center / cover no-repeat;
+}
+
 .screen {
+  position: relative;
   height: 100%;
-  padding: 2.2rem 3.4rem 2rem;
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto;
-  gap: var(--gap);
+  grid-template-columns: 31rem minmax(0, 1fr);
   transition: transform 2s ease;
 }
 
-/* ---------- כותרת ---------- */
-.top {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
+/* ---------- פס הצד ---------- */
+.side {
+  margin-right: 3rem;
+  background: var(--band);
+  padding: 2.4rem 2.4rem 1.8rem;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 2rem;
-  padding-bottom: 1.8rem;
-  position: relative;
-}
-.top::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 0.18rem;
-  border-radius: 1rem;
-  background: var(--glass);
-  opacity: 0.75;
+  text-align: center;
+  min-height: 0;
 }
 .brand {
   display: flex;
   align-items: center;
   gap: 1.4rem;
+  text-align: right;
 }
-.brand img {
-  height: 6.6rem;
-  width: auto;
-  display: block;
-}
-
+.brand img { display: block; }
 .shul-name {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 3.5rem;
+  font-size: 2.7rem;
   line-height: 1;
-  color: var(--gold);
-  margin: 0;
+  color: var(--ink);
+  margin: 0 0 0.5rem;
 }
 .shul-address {
-  margin-top: 0.5rem;
-  font-size: 1.4rem;
+  font-size: 1.35rem;
   color: var(--ink-dim);
 }
-
-.date-block { text-align: center; }
+.rule {
+  width: 82%;
+  height: 1px;
+  background: var(--line);
+  margin: 1.5rem 0;
+  flex: none;
+}
+.clock {
+  font-size: 5.8rem;
+  font-weight: 300;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  direction: ltr;
+}
 .heb-date {
+  margin-top: 0.9rem;
   font-family: var(--font-display);
-  font-size: 2.6rem;
+  font-size: 2rem;
   font-weight: 500;
-  line-height: 1.1;
+  line-height: 1.2;
 }
 .greg-date {
-  margin-top: 0.3rem;
-  font-size: 1.45rem;
+  margin-top: 0.4rem;
+  font-size: 1.35rem;
   color: var(--ink-dim);
 }
 .chips {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 0.7rem;
-  margin-top: 0.6rem;
+  gap: 0.6rem;
+  margin-top: 0.8rem;
 }
+.chips:empty { display: none; }
 .chip {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   padding: 0.25rem 1rem;
   border-radius: 99rem;
   background: var(--gold-wash);
   color: var(--gold);
-  white-space: nowrap;
 }
-.chip.alert { background: rgba(240, 138, 93, 0.16); color: var(--alert); }
+.chip.alert { background: hsla(24, 80%, 60%, 0.18); color: var(--alert); }
 
-.clock {
-  justify-self: end;
-  font-size: 5.8rem;
-  font-weight: 300;
-  line-height: 1;
-  letter-spacing: 0.02em;
-  font-variant-numeric: tabular-nums;
-  direction: ltr;
-}
-
-/* ---------- גוף ---------- */
-.main {
-  display: grid;
-  /* זמני היום בעמודה צרה, המודעות והתפילות מקבלות את רוב המקום */
-  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.5fr) minmax(0, 1.1fr);
+.side-zmanim {
+  width: 100%;
+  flex: 1;
   min-height: 0;
-}
-.col {
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+}
+.side-title {
+  margin: 0 0 0.8rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: var(--gold);
+}
+.side-zmanim .times { flex: 1; justify-content: space-between; }
+.side-zmanim .times li { font-size: 1.45em; padding-top: 0.1rem; padding-bottom: 0.1rem; }
+.side-zmanim .times .t { font-size: 1.05em; }
+
+/* ---------- לוח הכרטיסים ---------- */
+.board {
+  padding: 2.6rem 3rem 2.4rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1.1fr) minmax(0, 1fr) auto;
   gap: var(--gap);
   min-height: 0;
-  padding: 0 2.6rem;
 }
-.col:first-child { padding-right: 0; }
-.col:last-child { padding-left: 0; }
-/* קו אנכי ברור בין העמודות */
-.col + .col { border-right: 1px solid var(--line); }
-
-/* זמני היום: קטנים יותר משאר המסך */
-.zmanim-panel .panel-title { font-size: 1.8rem; }
-.zmanim-panel .times li { font-size: 1.3em; }
-.zmanim-panel .times .t { font-size: 1.1em; }
-
-.panel {
+.glass {
+  background: var(--glass);
+  border: 1px solid var(--glass-edge);
+  border-radius: var(--radius);
+  -webkit-backdrop-filter: blur(1.2rem);
+  backdrop-filter: blur(1.2rem);
+  padding: 1.8rem 2.2rem;
   min-height: 0;
   overflow: hidden;
   display: flex;
@@ -173,21 +175,23 @@ html, body {
   justify-content: space-between;
   gap: 1rem;
   margin: 0 0 1rem;
-  padding-bottom: 0.7rem;
+  padding-bottom: 0.8rem;
   border-bottom: 1px solid var(--line);
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 2.2rem;
   color: var(--gold);
 }
+.panel-title > span, .panel-title { white-space: nowrap; }
 .panel-title small {
+  flex: none;
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: var(--ink-faint);
 }
 
-/* רשימת זמנים */
+/* רשימות זמנים */
 .times {
   font-size: 1rem;
   list-style: none;
@@ -195,15 +199,13 @@ html, body {
   padding: 0;
   display: flex;
   flex-direction: column;
-  flex: 1;
-  justify-content: space-between;
 }
 .times li {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   gap: 1rem;
-  padding: 0.22rem 0.8rem;
+  padding: 0.3rem 0.8rem;
   margin: 0 -0.8rem;
   border-radius: 0.6rem;
   font-size: 1.6em;
@@ -211,15 +213,12 @@ html, body {
 }
 .times .label { white-space: nowrap; }
 .times .t {
-  font-size: 1.125em;
+  font-size: 1.12em;
   font-weight: 500;
   font-variant-numeric: tabular-nums;
 }
 .times li.past { color: var(--ink-faint); }
-.times li.next {
-  background: var(--gold-wash);
-  color: var(--gold);
-}
+.times li.next { background: var(--gold-wash); color: var(--gold); }
 .times li.next .label::after {
   content: attr(data-countdown);
   font-size: 0.72em;
@@ -228,35 +227,36 @@ html, body {
 }
 .times li.key .label { font-weight: 500; }
 
-/* מודעות */
+/* מודעות: כרטיס עם קשת, כמו החלון בלוגו */
 .announce {
-  flex: 1.35;
   position: relative;
-  background: var(--panel-raised);
-  border: 1px solid var(--gold-line);
-  /* קשת בראש, כמו החלון בלוגו ובאתר */
-  border-radius: 14rem 14rem var(--radius) var(--radius) / 5rem 5rem var(--radius) var(--radius);
-  overflow: hidden;
   justify-content: center;
   text-align: center;
   padding: 2.6rem 3rem;
+  border-color: hsla(37, 78%, 58%, 0.45);
+  border-radius: 16rem 16rem var(--radius) var(--radius) / 5.5rem 5.5rem var(--radius) var(--radius);
 }
+.announce-body {
+  font-size: 1rem;
+  max-height: 100%;
+  transition: opacity 0.7s ease;
+}
+.announce-body.fading { opacity: 0; }
 .announce-kicker {
-  font-size: 1.4em;
+  font-size: 1.35em;
   color: var(--gold);
   letter-spacing: 0.08em;
 }
 .announce-title {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 3.8em;
+  font-size: 4em;
   line-height: 1.15;
   margin: 0.5rem 0 0.4rem;
   text-wrap: balance;
 }
 .announce-sub {
   font-size: 2em;
-  color: var(--ink);
   text-wrap: balance;
 }
 .announce-meta {
@@ -264,7 +264,7 @@ html, body {
   justify-content: center;
   flex-wrap: wrap;
   gap: 0.6rem 2.4rem;
-  margin-top: 1.1rem;
+  margin-top: 1.2rem;
   font-size: 1.85em;
   color: var(--gold);
 }
@@ -273,73 +273,62 @@ html, body {
   font-size: 1.5em;
   color: var(--ink-dim);
 }
-.announce-body {
-  font-size: 1rem;
-  max-height: 100%;
-  transition: opacity 0.7s ease;
-}
-.announce-body.fading { opacity: 0; }
-.announce-dots {
-  position: absolute;
-  bottom: 1rem;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  gap: 0.6rem;
-}
-.announce-dots span {
-  width: 0.8rem;
-  height: 0.8rem;
-  border-radius: 50%;
-  background: var(--line);
-}
-.announce-dots span.on { background: var(--gold); }
 .announce-progress {
   position: absolute;
   bottom: 0;
   right: 0;
-  height: 0.3rem;
+  height: 0.25rem;
   background: var(--gold);
   width: 0;
 }
 
+/* תפילות */
+.prayers .times { gap: 0.3rem; }
+.prayers .times li { font-size: 1.9em; }
+
 /* היום יום */
-.hayomyom { flex: 1; }
 .hayomyom-text {
   flex: 1;
   min-height: 0;
   overflow: hidden;
   font-family: var(--font-display);
-  font-size: 2.2rem;
+  font-size: 2.1rem;
   line-height: 1.7;
   text-align: justify;
   white-space: pre-line;
 }
 .hayomyom-text.empty {
   font-family: var(--font-body);
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   color: var(--ink-faint);
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+/* טקסט ארוך: רץ לאט כלפי מעלה בלולאה */
+.hayomyom-text.scrolling {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 12%, #000 88%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 12%, #000 88%, transparent 100%);
+}
+.hayomyom-text.scrolling > div {
+  animation: hayomyom-run var(--run-time, 60s) linear infinite;
+}
+.hayomyom-text.scrolling .gap { height: 3rem; }
+@keyframes hayomyom-run {
+  from { transform: translateY(0); }
+  to { transform: translateY(var(--run-by, 0)); }
+}
 
-/* תפילות */
-.prayers { flex: none; }
-.prayers .times li { font-size: 1.6em; }
-.prayers .times .t { font-size: 1.12em; }
-.prayers .times { justify-content: flex-start; gap: 0.2rem; }
-.shabbat { flex: 1; }
+/* שבת: שתי עמודות, ערב שבת ויום שבת */
 .shabbat-body { font-size: 1rem; }
-.shabbat-body .times { font-size: inherit; flex: none; justify-content: flex-start; gap: 0; }
+.shabbat-body .times { font-size: inherit; }
 .shabbat-cols {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 2rem;
+  gap: 2.4rem;
 }
-.shabbat-cols .times li { font-size: 1.4em; padding-left: 0.4rem; padding-right: 0.4rem; margin: 0 -0.4rem; }
+.shabbat-cols .times li { font-size: 1.45em; padding-left: 0.4rem; padding-right: 0.4rem; margin: 0 -0.4rem; }
 .col-head {
   font-size: 1.2em;
   color: var(--ink-dim);
@@ -347,8 +336,6 @@ html, body {
   margin-bottom: 0.3em;
   border-bottom: 1px solid var(--line);
 }
-.chag-block { margin-top: 0.6rem; }
-.times li.chag-head:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
 .times li.chag-head {
   margin-top: 0.5rem;
   padding-top: 0.5rem;
@@ -359,47 +346,51 @@ html, body {
   font-size: 1.6em;
   color: var(--gold);
 }
-.shabbat-sub {
-  font-size: 1.6rem;
-  color: var(--ink-dim);
-  margin: -0.4rem 0 0.5rem;
-}
+.times li.chag-head:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
 
-/* ---------- חת"ת ---------- */
+/* חת"ת: פס זכוכית לאורך כל הלוח, ארבעה שיעורים בשתי שורות */
 .chitas {
+  grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: auto repeat(4, minmax(0, 1fr));
-  align-items: stretch;
-  gap: 0;
-  gap: 3rem;
-  padding-top: 1.4rem;
-  border-top: 1px solid var(--line);
+  grid-template-columns: auto minmax(0, 1fr) minmax(0, 1.1fr);
+  grid-template-rows: auto auto;
+  align-items: center;
+  column-gap: 2.6rem;
+  row-gap: 0.5rem;
+  padding: 1.2rem 2.2rem;
 }
 .chitas-head {
-  display: flex;
-  align-items: center;
-  color: var(--gold);
+  grid-row: 1 / 3;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 2.2rem;
+  color: var(--gold);
+  padding-left: 2.4rem;
+  border-left: 1px solid var(--line);
+  align-self: stretch;
+  display: flex;
+  align-items: center;
 }
 .chitas-item {
-  padding: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
   min-width: 0;
 }
 .chitas-item .k {
-  font-size: 1.15rem;
+  flex: none;
+  width: 4.6rem;
+  font-size: 1.25rem;
   color: var(--gold);
-  letter-spacing: 0.06em;
 }
 .chitas-item .v {
-  margin-top: 0.2rem;
-  font-size: 1.5rem;
-  line-height: 1.3;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
+  flex: 1;
+  min-width: 0;
+  font-size: 1.45rem;
+  line-height: 1.35;
+  white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
 .chitas-item .v.empty { color: var(--ink-faint); }
 
@@ -416,8 +407,8 @@ html, body {
   opacity: 0.6;
 }
 .status .dot {
-  width: 0.7rem;
-  height: 0.7rem;
+  width: 0.6rem;
+  height: 0.6rem;
   border-radius: 50%;
   background: var(--ink-faint);
 }
@@ -437,23 +428,5 @@ html, body {
 
 @media (prefers-reduced-motion: reduce) {
   .announce-body, .screen { transition: none; }
-}
-
-/* טקסט ארוך: רץ לאט כלפי מעלה בלולאה */
-.hayomyom-text.scrolling {
-  overflow: hidden;
-  text-align: justify;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 12%, #000 88%, transparent 100%);
-  mask-image: linear-gradient(to bottom, transparent 0, #000 12%, #000 88%, transparent 100%);
-}
-.hayomyom-text.scrolling > div {
-  animation: hayomyom-run var(--run-time, 60s) linear infinite;
-}
-.hayomyom-text.scrolling .gap { height: 3rem; }
-@keyframes hayomyom-run {
-  from { transform: translateY(0); }
-  to { transform: translateY(var(--run-by, 0)); }
-}
-@media (prefers-reduced-motion: reduce) {
   .hayomyom-text.scrolling > div { animation: none; }
 }
