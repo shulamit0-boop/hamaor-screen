@@ -324,8 +324,8 @@ html, body {
   overflow: hidden;
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: 2rem;
-  line-height: 1.75;
+  font-size: 1.7rem;
+  line-height: 1.45;
   color: var(--ink);
   text-align: justify;
   white-space: pre-line;
