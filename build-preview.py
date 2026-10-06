@@ -15,6 +15,7 @@ def read(path):
 
 html = read('index.html')
 
+html = re.sub(r'\?v=\d+"', '"', html)
 html = html.replace('<link rel="stylesheet" href="css/screen.css">',
                     '<style>\n' + read('css/screen.css') + '\n</style>')
 

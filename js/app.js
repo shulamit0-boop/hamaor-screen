@@ -576,11 +576,20 @@
       state.online = true;
       applyData(res[0], res[1]);
       updateStatus();
+      checkVersion();
     }).catch(function () {
       // בלי חיבור ממשיכים להציג את מה שכבר נטען. הזמנים מחושבים במסך עצמו.
       state.online = false;
       updateStatus();
     });
+  }
+
+  // כשמעלים גרסה חדשה של המסך, הטלוויזיה טוענת אותה לבד
+  function checkVersion() {
+    if (!window.APP_VERSION) return;
+    loadJSON('data/version.json').then(function (v) {
+      if (v && v.version && v.version !== window.APP_VERSION) location.reload();
+    }).catch(function () {});
   }
 
   // ---------- מסך דולק ----------

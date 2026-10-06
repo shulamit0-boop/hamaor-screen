@@ -7,14 +7,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700&family=Heebo:wght@300;400;500&display=swap">
-<link rel="stylesheet" href="css/screen.css">
+<link rel="stylesheet" href="css/screen.css?v=3">
 </head>
 <body>
 <div class="screen" id="screen" dir="rtl">
 
   <header class="top">
     <div class="brand">
-      <img src="img/logo-window.png" alt="">
+      <img src="img/logo-window.png?v=3" alt="" style="height:7.4rem;width:auto">
       <div>
         <h1 class="shul-name" id="shul-name">בית כנסת המאור</h1>
         <div class="shul-address" id="shul-address"></div>
@@ -72,12 +72,13 @@
 <div class="status" id="status" dir="rtl"><span class="dot"></span><span id="status-text"></span></div>
 <div class="wake-hint" id="wake-hint" dir="rtl" hidden>לחצו OK בשלט כדי שהמסך יישאר דולק</div>
 
-<script src="lib/hebcal-core.min.js"></script>
-<script src="lib/NoSleep.min.js"></script>
-<script src="config.js"></script>
-<script src="js/zmanim.js"></script>
-<script src="js/learning.js"></script>
-<script src="js/sources.js"></script>
-<script src="js/app.js"></script>
+<script>window.APP_VERSION = '3';</script>
+<script src="lib/hebcal-core.min.js?v=3"></script>
+<script src="lib/NoSleep.min.js?v=3"></script>
+<script src="config.js?v=3"></script>
+<script src="js/zmanim.js?v=3"></script>
+<script src="js/learning.js?v=3"></script>
+<script src="js/sources.js?v=3"></script>
+<script src="js/app.js?v=3"></script>
 </body>
 </html>
