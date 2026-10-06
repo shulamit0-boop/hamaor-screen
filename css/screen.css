@@ -5,7 +5,7 @@
   --ground: hsl(192, 40%, 8%);
   --panel: hsl(192, 35%, 12%);
   --panel-raised: hsl(192, 58%, 19%);
-  --line: hsl(192, 30%, 20%);
+  --line: hsl(192, 28%, 24%);
   --ink: hsl(40, 33%, 96%);
   --ink-dim: hsl(40, 20%, 72%);
   --ink-faint: hsl(192, 14%, 46%);
@@ -140,8 +140,8 @@ html, body {
 /* ---------- גוף ---------- */
 .main {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr) minmax(0, 1.1fr);
-  gap: 4rem;
+  /* זמני היום בעמודה צרה, המודעות והתפילות מקבלות את רוב המקום */
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.5fr) minmax(0, 1.1fr);
   min-height: 0;
 }
 .col {
@@ -149,7 +149,17 @@ html, body {
   flex-direction: column;
   gap: var(--gap);
   min-height: 0;
+  padding: 0 2.6rem;
 }
+.col:first-child { padding-right: 0; }
+.col:last-child { padding-left: 0; }
+/* קו אנכי ברור בין העמודות */
+.col + .col { border-right: 1px solid var(--line); }
+
+/* זמני היום: קטנים יותר משאר המסך */
+.zmanim-panel .panel-title { font-size: 1.8rem; }
+.zmanim-panel .times li { font-size: 1.3em; }
+.zmanim-panel .times .t { font-size: 1.1em; }
 
 .panel {
   min-height: 0;
