@@ -6,7 +6,14 @@
       "subtitle": "עם הרב שמעיה",
       "when": "כל יום שני · 20:30",
       "where": "בבית הכנסת",
-      "image": "img/ann/tanya.jpg"
+      "image": "img/ann/tanya-crop.jpg"
+    },
+    {
+      "kind": "שיעור שבועי",
+      "title": "שיעור גמרא",
+      "when": "כל יום ראשון · אחרי תפילת ערבית",
+      "where": "בבית הכנסת",
+      "image": "img/ann/gemara.svg"
     }
   ]
 }

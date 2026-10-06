@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2f5d66"/><stop offset="1" stop-color="#1f414a"/>
+    </linearGradient>
+    <linearGradient id="pg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fbf5e6"/><stop offset="1" stop-color="#efe3c6"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="600" fill="url(#bg)"/>
+  <circle cx="300" cy="300" r="250" fill="#c9a85c" opacity=".08"/>
+  <!-- דף גמרא: הגמרא במרכז, רש"י ותוספות סביב -->
+  <rect x="110" y="80" width="380" height="450" rx="10" fill="url(#pg)"/>
+  <rect x="110" y="80" width="380" height="450" rx="10" fill="none" stroke="#c9a85c" stroke-width="3"/>
+  <text x="300" y="132" text-anchor="middle" font-family="serif" font-size="30" font-weight="700" fill="#7a5a22">גמרא</text>
+  <g fill="#3d5a5f">
+    <rect x="215" y="160" width="170" height="10" rx="5"/><rect x="215" y="182" width="170" height="10" rx="5"/>
+    <rect x="215" y="204" width="170" height="10" rx="5"/><rect x="215" y="226" width="150" height="10" rx="5"/>
+    <rect x="215" y="248" width="170" height="10" rx="5"/><rect x="215" y="270" width="170" height="10" rx="5"/>
+    <rect x="215" y="292" width="170" height="10" rx="5"/><rect x="215" y="314" width="120" height="10" rx="5"/>
+    <rect x="215" y="336" width="170" height="10" rx="5"/><rect x="215" y="358" width="170" height="10" rx="5"/>
+  </g>
+  <g fill="#9aa9a7">
+    <rect x="400" y="160" width="68" height="6" rx="3"/><rect x="400" y="176" width="68" height="6" rx="3"/>
+    <rect x="400" y="192" width="60" height="6" rx="3"/><rect x="400" y="208" width="68" height="6" rx="3"/>
+    <rect x="400" y="224" width="68" height="6" rx="3"/><rect x="400" y="240" width="52" height="6" rx="3"/>
+    <rect x="400" y="256" width="68" height="6" rx="3"/><rect x="400" y="272" width="68" height="6" rx="3"/>
+    <rect x="400" y="288" width="68" height="6" rx="3"/><rect x="400" y="304" width="60" height="6" rx="3"/>
+    <rect x="400" y="320" width="68" height="6" rx="3"/><rect x="400" y="336" width="68" height="6" rx="3"/>
+    <rect x="400" y="352" width="44" height="6" rx="3"/>
+    <rect x="132" y="160" width="68" height="6" rx="3"/><rect x="132" y="176" width="68" height="6" rx="3"/>
+    <rect x="140" y="192" width="60" height="6" rx="3"/><rect x="132" y="208" width="68" height="6" rx="3"/>
+    <rect x="132" y="224" width="68" height="6" rx="3"/><rect x="148" y="240" width="52" height="6" rx="3"/>
+    <rect x="132" y="256" width="68" height="6" rx="3"/><rect x="132" y="272" width="68" height="6" rx="3"/>
+    <rect x="132" y="288" width="68" height="6" rx="3"/><rect x="140" y="304" width="60" height="6" rx="3"/>
+    <rect x="132" y="320" width="68" height="6" rx="3"/><rect x="132" y="336" width="68" height="6" rx="3"/>
+    <rect x="156" y="352" width="44" height="6" rx="3"/>
+    <rect x="132" y="386" width="336" height="6" rx="3"/><rect x="132" y="402" width="336" height="6" rx="3"/>
+    <rect x="132" y="418" width="336" height="6" rx="3"/><rect x="132" y="434" width="300" height="6" rx="3"/>
+    <rect x="132" y="450" width="336" height="6" rx="3"/><rect x="132" y="466" width="336" height="6" rx="3"/>
+    <rect x="200" y="482" width="268" height="6" rx="3"/>
+  </g>
+  <text x="300" y="565" text-anchor="middle" font-family="serif" font-size="22" fill="#e7d6a7" opacity=".9">בית כנסת המאור</text>
+</svg>
