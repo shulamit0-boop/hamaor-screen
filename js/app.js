@@ -507,11 +507,17 @@
 
   function announcementHtml(a) {
     var meta = [a.when, a.where].filter(Boolean).map(function (m) { return '<span>' + esc(m) + '</span>'; }).join('');
-    return (a.kind ? '<div class="announce-kicker">' + esc(a.kind) + '</div>' : '') +
+    var text = (a.kind ? '<div class="announce-kicker">' + esc(a.kind) + '</div>' : '') +
       '<div class="announce-title">' + esc(a.title) + '</div>' +
       (a.subtitle ? '<div class="announce-sub">' + esc(a.subtitle) + '</div>' : '') +
       (meta ? '<div class="announce-meta">' + meta + '</div>' : '') +
       (a.note ? '<div class="announce-note">' + esc(a.note) + '</div>' : '');
+    // מודעה עם תמונה (למשל פלאייר): התמונה בצד והטקסט לידה
+    if (a.image) {
+      return '<div class="ann-with-image"><img class="ann-image" src="' + esc(a.image) + '" alt="">' +
+        '<div class="ann-text">' + text + '</div></div>';
+    }
+    return text;
   }
 
   function showAnnouncement(animate) {

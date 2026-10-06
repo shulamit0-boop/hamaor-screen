@@ -289,6 +289,21 @@ html, body {
   font-size: 1.5em;
   color: var(--ink-dim);
 }
+.ann-with-image {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  text-align: right;
+}
+.ann-with-image .announce-meta { justify-content: flex-start; }
+.ann-image {
+  flex: none;
+  height: 16rem;
+  width: auto;
+  border-radius: 0.8rem;
+  box-shadow: 0 0.8rem 2rem hsla(192, 50%, 5%, 0.4);
+}
+.ann-text { flex: 1; min-width: 0; }
 .announce-progress {
   position: absolute;
   bottom: 0;
