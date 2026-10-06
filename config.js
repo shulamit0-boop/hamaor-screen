@@ -18,7 +18,7 @@ var CONFIG = {
   weekdayPrayers: [
     { id: 'shacharit', label: 'שחרית', days: [0, 1, 2, 3, 4, 5], time: { fixed: '8:15' } },
     { id: 'minchaEarly', label: 'מנחה מוקדמת', days: [0, 1, 2, 3, 4], time: { fixed: '13:30' } },
-    { id: 'mincha', label: 'מנחה', days: [0, 1, 2, 3, 4], notOnErev: true, time: { beforeShkia: 10, roundDownTo: 5 } },
+    { id: 'mincha', label: 'מנחה', days: [0, 1, 2, 3, 4], notOnErev: true, time: { beforeShkia: 10, roundDownTo: 5, weeklyBySunday: true } },
     { id: 'maariv', label: 'ערבית', days: [0, 1, 2, 3, 4], notOnErev: true, time: { after: 'mincha', minutes: 35 } }
   ],
 

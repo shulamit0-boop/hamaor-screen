@@ -174,7 +174,11 @@
       var set = isMevarchim(date) ? spec.shabbatMorning.mevarchim : spec.shabbatMorning.regular;
       t = parseHM(isSummerTime(date) ? set.summer : set.winter);
     }
-    else if (spec.beforeShkia !== undefined) t = zmanimFor(date).shkia - spec.beforeShkia;
+    else if (spec.beforeShkia !== undefined) {
+      // weeklyBySunday: הזמן נקבע לפי השקיעה של יום ראשון ונשאר קבוע כל השבוע
+      var base = spec.weeklyBySunday ? addDays(date, -date.getDay()) : date;
+      t = zmanimFor(base).shkia - spec.beforeShkia;
+    }
     else if (spec.afterCandles !== undefined) t = candles(date) + spec.afterCandles;
     else if (spec.beforeHavdalah !== undefined) t = havdalah(date) - spec.beforeHavdalah;
     else if (spec.after) t = done[spec.after] === undefined || done[spec.after] === null ? null : done[spec.after] + spec.minutes;
