@@ -508,6 +508,7 @@
   function activeAnnouncements(now) {
     var today = dayKey(now.date);
     return state.announcements.filter(function (a) {
+      if (!a.title) return false; // מודעה בלי כותרת (למשל פרנס השבוע לפני שעודכן) לא מוצגת
       if (a.from && today < a.from) return false;
       if (a.until && today > a.until) return false;
       if (a.days && a.days.indexOf(now.date.getDay()) < 0) return false;
@@ -527,7 +528,7 @@
       return '<div class="ann-with-image"><img class="ann-image" src="' + esc(a.image) + '" alt="">' +
         '<div class="ann-text">' + text + '</div></div>';
     }
-    return text;
+    return '<div class="ann-text">' + text + '</div>';
   }
 
   function showAnnouncement(animate) {
@@ -548,8 +549,8 @@
     var draw = function () {
       body.innerHTML = announcementHtml(a);
       body.style.fontSize = '1rem';
-      var room = $('announce').clientHeight * 0.82;
-      for (var size = 1; body.scrollHeight > room && size > 0.55; size -= 0.05) {
+      var box = body.querySelector('.ann-text');
+      for (var size = 1; box.scrollHeight > box.clientHeight + 1 && size > 0.55; size -= 0.05) {
         body.style.fontSize = size + 'rem';
       }
       body.classList.remove('fading');

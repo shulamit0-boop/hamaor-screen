@@ -13,7 +13,14 @@
       "title": "שיעור גמרא",
       "when": "כל יום ראשון · אחרי תפילת ערבית",
       "where": "בבית הכנסת",
-      "image": "img/ann/gemara.svg"
+      "image": "img/ann/gemara.jpg"
+    },
+    {
+      "kind": "פרנס השבוע",
+      "title": "",
+      "subtitle": "",
+      "note": "",
+      "image": "img/ann/parnas.jpg"
     }
   ]
 }
