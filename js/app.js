@@ -240,10 +240,11 @@
     var z = zmanimFor(now.date);
     var tomorrow = z.tzeit !== null && now.minutes >= z.tzeit + 30;
     if (tomorrow) z = zmanimFor(addDays(now.date, 1));
-    $('zmanim-title').innerHTML = (tomorrow ? 'זמני מחר' : 'זמני היום') + ' <small>לפי לוח חב"ד</small>';
+    $('zmanim-title').textContent = tomorrow ? 'זמני מחר' : 'זמני היום';
     renderTimes($('zmanim'), ZMANIM_ROWS.map(function (r) {
       return { label: r.label, t: z[r.id], key: r.key };
     }), tomorrow ? null : now.minutes);
+    fitPanel($('zmanim'));
   }
 
   // ---------- שבת וחג ----------
@@ -387,7 +388,7 @@
     var dow = now.date.getDay();
     var sat = addDays(now.date, 6 - dow);
     var weekName = parshaName(sat);
-    if (weekName && !isChag(sat)) chips.push({ text: weekName });
+    $('greg-date').textContent += (weekName && !isChag(sat)) ? ' · ' + weekName : '';
     holidays(now.date).forEach(function (e) {
       if (e.getFlags() & (F.PARSHA_HASHAVUA)) return;
       chips.push({ text: heb(e) });
@@ -408,8 +409,7 @@
 
   function renderClock(now) {
     var mm = (now.min < 10 ? '0' : '') + now.min;
-    var ss = (now.sec < 10 ? '0' : '') + now.sec;
-    $('clock').innerHTML = now.h + ':' + mm + '<span class="sec">' + ss + '</span>';
+    $('clock').textContent = now.h + ':' + mm;
   }
 
   // ---------- חת"ת והיום יום ----------
@@ -447,7 +447,7 @@
     for (var a in live) day[a] = live[a];
     for (var b in manual) day[b] = manual[b];
     if (!day.rambam && day.rambam3) {
-      day.rambam = 'ג\' פרקים: ' + day.rambam3 + (day.rambam1 ? ' · פרק אחד: ' + day.rambam1 : '');
+      day.rambam = day.rambam3;
     }
     setLearning('chitas-chumash', day.chumash || Learning.chumash(now.date));
     setLearning('chitas-tehillim', day.tehillim || Learning.tehillim(hd));
@@ -461,17 +461,24 @@
         box.className = 'hayomyom-text';
         box.textContent = day.hayomyom;
         box.setAttribute('data-k', dayKey(now.date) + day.hayomyom.length);
-        fitText(box, 2.4, 1.6);
-        // אם גם בגופן הקטן הטקסט לא נכנס, הוא נגלל לאט
-        var extra = box.scrollHeight - box.clientHeight;
-        if (extra > 2) {
+        // טקסט ארוך רץ לאט כלפי מעלה בלולאה, בגודל קבוע ונוח לקריאה
+        if (box.scrollHeight > box.clientHeight + 2) {
           box.innerHTML = '';
-          var inner = document.createElement('span');
-          inner.textContent = day.hayomyom;
-          box.appendChild(inner);
+          var track = document.createElement('div');
+          var first = document.createElement('div');
+          first.textContent = day.hayomyom;
+          var gap = document.createElement('div');
+          gap.className = 'gap';
+          var second = first.cloneNode(true);
+          track.appendChild(first);
+          track.appendChild(gap);
+          track.appendChild(second);
+          box.appendChild(track);
           box.className = 'hayomyom-text scrolling';
-          box.style.setProperty('--scroll-by', -(extra + 10) + 'px');
-          box.style.setProperty('--scroll-time', Math.max(30, Math.round(extra / 4)) + 's');
+          var distance = first.offsetHeight + gap.offsetHeight;
+          box.style.setProperty('--run-by', -distance + 'px');
+          // בערך 15 פיקסלים בשנייה: איטי מספיק לקריאה נוחה
+          box.style.setProperty('--run-time', Math.round(distance / 15) + 's');
         }
       }
     } else {
@@ -631,7 +638,6 @@
 
   function updateStatus() {
     var parts = [];
-    if (state.awake) parts.push('מסך דולק');
     if (!state.online) parts.push('אין חיבור לאינטרנט, מוצג המידע האחרון');
     $('status-text').textContent = parts.join(' · ');
     $('status').className = 'status' + (state.awake ? ' awake' : '');

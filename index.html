@@ -7,14 +7,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700&family=Heebo:wght@300;400;500&display=swap">
-<link rel="stylesheet" href="css/screen.css?v=3">
+<link rel="stylesheet" href="css/screen.css?v=4">
 </head>
 <body>
 <div class="screen" id="screen" dir="rtl">
 
   <header class="top">
     <div class="brand">
-      <img src="img/logo-window.png?v=3" alt="" style="height:7.4rem;width:auto">
+      <img src="img/logo-window.png?v=4" alt="" style="height:7.4rem;width:auto">
       <div>
         <h1 class="shul-name" id="shul-name">בית כנסת המאור</h1>
         <div class="shul-address" id="shul-address"></div>
@@ -31,7 +31,7 @@
   <main class="main">
     <section class="col">
       <div class="panel" style="flex:1">
-        <h2 class="panel-title" id="zmanim-title">זמני היום <small>לפי לוח חב"ד</small></h2>
+        <h2 class="panel-title" id="zmanim-title">זמני היום</h2>
         <ul class="times" id="zmanim"></ul>
       </div>
     </section>
@@ -40,10 +40,10 @@
       <div class="panel announce" id="announce">
         <div class="announce-progress" id="announce-progress"></div>
         <div class="announce-body" id="announce-body"></div>
-        <div class="announce-dots" id="announce-dots"></div>
+        <div class="announce-dots" id="announce-dots" hidden></div>
       </div>
       <div class="panel hayomyom">
-        <h2 class="panel-title"><span>היום יום</span> <small><span id="hayomyom-date"></span> · מתוך חב"דפדיה</small></h2>
+        <h2 class="panel-title"><span>היום יום</span> <small id="hayomyom-date"></small></h2>
         <div class="hayomyom-text" id="hayomyom-text"></div>
       </div>
     </section>
@@ -72,13 +72,13 @@
 <div class="status" id="status" dir="rtl"><span class="dot"></span><span id="status-text"></span></div>
 <div class="wake-hint" id="wake-hint" dir="rtl" hidden>לחצו OK בשלט כדי שהמסך יישאר דולק</div>
 
-<script>window.APP_VERSION = '3';</script>
-<script src="lib/hebcal-core.min.js?v=3"></script>
-<script src="lib/NoSleep.min.js?v=3"></script>
-<script src="config.js?v=3"></script>
-<script src="js/zmanim.js?v=3"></script>
-<script src="js/learning.js?v=3"></script>
-<script src="js/sources.js?v=3"></script>
-<script src="js/app.js?v=3"></script>
+<script>window.APP_VERSION = '4';</script>
+<script src="lib/hebcal-core.min.js?v=4"></script>
+<script src="lib/NoSleep.min.js?v=4"></script>
+<script src="config.js?v=4"></script>
+<script src="js/zmanim.js?v=4"></script>
+<script src="js/learning.js?v=4"></script>
+<script src="js/sources.js?v=4"></script>
+<script src="js/app.js?v=4"></script>
 </body>
 </html>
