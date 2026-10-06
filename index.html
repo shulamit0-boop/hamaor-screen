@@ -6,35 +6,27 @@
 <title>מסך בית הכנסת המאור</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&family=Noto+Serif+Hebrew:wght@400;600;700&display=swap">
-<link rel="stylesheet" href="css/screen.css?v=11">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="css/screen.css?v=15.1">
 </head>
 <body>
 <div class="backdrop" aria-hidden="true"></div>
 <div class="screen" id="screen" dir="rtl">
 
-  <!-- פס צד: זהות, שעון, תאריך וזמני היום -->
-  <aside class="side">
-    <div class="brand">
-      <img src="img/logo-window.png?v=11" alt="" style="height:5.6rem;width:auto">
+  <aside class="identity">    <div class="brand">
+      <img src="img/logo-window.png?v=15" alt="">
       <div>
         <h1 class="shul-name" id="shul-name">בית כנסת המאור</h1>
-        <div class="shul-address" id="shul-address"></div>
+        
       </div>
     </div>
-    <div class="rule"></div>
-    <div class="clock" id="clock"></div>
+
+    <div class="header-date"><div class="clock" id="clock"></div>
     <div class="heb-date" id="heb-date"></div>
     <div class="greg-date" id="greg-date"></div>
-    <div class="chips" id="chips"></div>
-    <div class="rule"></div>
-    <div class="side-zmanim">
-      <h2 class="side-title" id="zmanim-title">זמני היום</h2>
-      <ul class="times" id="zmanim"></ul>
-    </div>
-  </aside>
+    <div class="chips" id="chips"></div></div><div class="shul-address" id="shul-address"></div>
 
-  <!-- כרטיסי זכוכית מעל התמונה של יפו -->
+</aside>
   <main class="board">
     <section class="glass announce" id="announce">
       <div class="announce-progress" id="announce-progress"></div>
@@ -47,16 +39,14 @@
       <ul class="times" id="prayers"></ul>
     </section>
 
+    <section class="glass zmanim-panel">    <div class="side-zmanim">
+      <h2 class="side-title" id="zmanim-title">זמני היום</h2>
+      <ul class="times" id="zmanim"></ul>
+    </div>
+</section>
     <section class="glass hayomyom">
       <h2 class="panel-title"><span>היום יום</span> <small id="hayomyom-date"></small></h2>
       <div class="hayomyom-text" id="hayomyom-text"></div>
-    </section>
-
-    <section class="glass shabbat">
-      <h2 class="panel-title"><span id="shabbat-title">שבת</span> <small id="shabbat-sub"></small></h2>
-      <div class="shabbat-body" id="shabbat"></div>
-    </section>
-
     <footer class="glass chitas">
       <div class="chitas-head">חת"ת</div>
       <div class="chitas-item"><div class="k">חומש</div><div class="v" id="chitas-chumash"></div></div>
@@ -64,19 +54,27 @@
       <div class="chitas-item"><div class="k">תהלים</div><div class="v" id="chitas-tehillim"></div></div>
       <div class="chitas-item"><div class="k">רמב"ם</div><div class="v" id="chitas-rambam"></div></div>
     </footer>
+    </section>
+
+    <section class="glass shabbat">
+      <h2 class="panel-title"><span id="shabbat-title">שבת</span> <small id="shabbat-sub"></small></h2>
+      <div class="shabbat-body" id="shabbat"></div>
+    </section>
+
+
   </main>
 </div>
 
 <div class="status" id="status" dir="rtl"><span class="dot"></span><span id="status-text"></span></div>
 <div class="wake-hint" id="wake-hint" dir="rtl" hidden>לחצו OK בשלט כדי שהמסך יישאר דולק</div>
 
-<script>window.APP_VERSION = '11';</script>
-<script src="lib/hebcal-core.min.js?v=11"></script>
-<script src="lib/NoSleep.min.js?v=11"></script>
-<script src="config.js?v=11"></script>
-<script src="js/zmanim.js?v=11"></script>
-<script src="js/learning.js?v=11"></script>
-<script src="js/sources.js?v=11"></script>
-<script src="js/app.js?v=11"></script>
+<script>window.APP_VERSION = '15';</script>
+<script src="lib/hebcal-core.min.js?v=15"></script>
+<script src="lib/NoSleep.min.js?v=15"></script>
+<script src="config.js?v=15"></script>
+<script src="js/zmanim.js?v=15"></script>
+<script src="js/learning.js?v=15"></script>
+<script src="js/sources.js?v=15"></script>
+<script src="js/app.js?v=15"></script>
 </body>
 </html>

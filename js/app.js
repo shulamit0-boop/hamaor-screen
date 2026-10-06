@@ -115,6 +115,16 @@
 
   // rows: [{label, t, key, at}], now: דקות מחצות היום, או null כדי לא לסמן עבר/הבא.
   // at: מועד להשוואה כשהשורה שייכת ליום אחר (ימים מהיום × 1440 + t)
+  function prayerIcon(id) {
+    var paths = {
+      shacharit: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/>',
+      minchaEarly: '<circle cx="12" cy="12" r="7"/><path d="M12 8v4l3 2"/>',
+      mincha: '<path d="M3 17h18M6 14a6 6 0 0 1 12 0M12 3v3M4 7l2 2m14-2-2 2"/>',
+      maariv: '<path d="M20 14a8 8 0 0 1-10-10 8 8 0 1 0 10 10Z"/>'
+    };
+    return paths[id] ? '<svg class="prayer-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">'+paths[id]+'</svg>' : '';
+  }
+
   function timesHtml(rows, now) {
     var nextFound = false;
     return rows.map(function (r) {
@@ -131,7 +141,7 @@
         }
       }
       return '<li class="' + cls.join(' ') + '"><span class="label" data-countdown="' + esc(cd) + '">' +
-        esc(r.label) + '</span><span class="t">' + Zmanim.format(r.t) + '</span></li>';
+        prayerIcon({'שחרית':'shacharit','מנחה מוקדמת':'minchaEarly','מנחה':'mincha','ערבית':'maariv'}[r.label]) + esc(r.label) + '</span><span class="t">' + Zmanim.format(r.t) + '</span></li>';
     }).join('');
   }
 
@@ -525,6 +535,8 @@
     var body = $('announce-body');
     var bar = $('announce-progress');
     if (!list.length) {
+      body.classList.remove('fading');
+      body.style.fontSize = '1rem';
       body.innerHTML = '<div class="announce-title">ברוכים הבאים</div><div class="announce-sub">' + esc(C.name) + '</div>';
       $('announce-dots').innerHTML = '';
       bar.style.transition = 'none';
@@ -552,7 +564,7 @@
         bar.style.width = '100%';
       }
     };
-    if (animate) {
+    if (animate && list.length > 1) {
       body.classList.add('fading');
       setTimeout(draw, 700);
     } else draw();
@@ -561,6 +573,7 @@
   function startAnnouncements() {
     clearInterval(state.annTimer);
     showAnnouncement(false);
+    if (activeAnnouncements(israelNow()).length < 2) return;
     state.annTimer = setInterval(function () {
       state.annIndex++;
       showAnnouncement(true);

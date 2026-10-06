@@ -1,6 +1,7 @@
 """בונה קובץ HTML יחיד שכולל הכול (עיצוב, ספריות, קוד ונתונים), לתצוגה מקדימה.
 הרצה: python3 build-preview.py
 """
+import base64
 import json
 import os
 import re
@@ -13,11 +14,17 @@ def read(path):
         return f.read()
 
 
+brand_css = read('fonts/brand.css')
+for name in ('Regular', 'Medium', 'Bold'):
+    filename = 'FbHachaluzim-' + name + '.otf'
+    encoded = base64.b64encode(open(os.path.join(ROOT, 'fonts', filename), 'rb').read()).decode()
+    brand_css = brand_css.replace("url('" + filename + "')", "url('data:font/otf;base64," + encoded + "')")
+screen_css = read('css/screen.css').replace("@import url('../fonts/brand.css');", brand_css)
 html = read('index.html')
 
-html = re.sub(r'\?v=\d+"', '"', html)
+html = re.sub(r'\?v=[\d.]+"', '"', html)
 html = html.replace('<link rel="stylesheet" href="css/screen.css">',
-                    '<style>\n' + read('css/screen.css') + '\n</style>')
+                    '<style>\n' + screen_css + '\n</style>')
 
 inline = {
     'announcements': json.loads(read('data/announcements.json')),
