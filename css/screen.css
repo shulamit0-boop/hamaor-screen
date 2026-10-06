@@ -1,17 +1,24 @@
 /* פריסה: שלוש עמודות מתחת לכותרת. מימין זמני היום, במרכז מודעות ופתגם היום יום,
    משמאל תפילות ושבת. בתחתית פס חת"ת. כל המידות ב-rem, שמותאם לגודל המסך. */
 :root {
-  --ground: #0d1524;
-  --panel: #152038;
-  --panel-raised: #1b2945;
-  --line: #2a3756;
-  --ink: #f4efe1;
-  --ink-dim: #a3abbf;
-  --ink-faint: #67718a;
-  --gold: #e4b857;
-  --gold-wash: rgba(228, 184, 87, 0.14);
-  --gold-line: rgba(228, 184, 87, 0.45);
-  --alert: #f08a5d;
+  /* הצבעים של אתר בית הכנסת (hamaor.co.il): טורקיז ים, זהב, חול, וצבעי חלון הוויטראז' */
+  --ground: hsl(192, 40%, 8%);
+  --panel: hsl(192, 35%, 12%);
+  --panel-raised: hsl(192, 58%, 19%);
+  --line: hsl(192, 30%, 20%);
+  --ink: hsl(40, 33%, 96%);
+  --ink-dim: hsl(40, 20%, 72%);
+  --ink-faint: hsl(192, 14%, 46%);
+  --gold: hsl(37, 78%, 56%);
+  --gold-wash: hsla(37, 78%, 56%, 0.15);
+  --gold-line: hsla(37, 78%, 56%, 0.5);
+  --sea: hsl(199, 60%, 42%);
+  --alert: hsl(24, 75%, 58%);
+  /* פס בצבעי החלון: כחול, צהוב, כתום, טורקיז */
+  --glass: linear-gradient(90deg,
+    hsl(205, 70%, 45%) 0 14%, hsl(48, 90%, 58%) 14% 30%, hsl(28, 85%, 55%) 30% 42%,
+    hsl(172, 45%, 60%) 42% 56%, hsl(48, 90%, 58%) 56% 70%, hsl(8, 65%, 50%) 70% 80%,
+    hsl(199, 60%, 42%) 80% 100%);
 
   --font-display: 'Frank Ruhl Libre', 'David Libre', 'Times New Roman', serif;
   --font-body: 'Heebo', 'Assistant', 'Arial Hebrew', Arial, sans-serif;
@@ -52,8 +59,29 @@ html, body {
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 2rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--gold-line);
+  padding-bottom: 1.1rem;
+  position: relative;
+}
+.top::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0.3rem;
+  border-radius: 1rem;
+  background: var(--glass);
+  opacity: 0.9;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+}
+.brand img {
+  height: 7.4rem;
+  width: auto;
+  display: block;
 }
 
 .shul-name {
@@ -203,10 +231,12 @@ html, body {
   position: relative;
   background: var(--panel-raised);
   border: 1px solid var(--gold-line);
+  /* קשת בראש, כמו החלון בלוגו ובאתר */
+  border-radius: 14rem 14rem var(--radius) var(--radius) / 5rem 5rem var(--radius) var(--radius);
   overflow: hidden;
   justify-content: center;
   text-align: center;
-  padding: 1.6rem 2.6rem 2.4rem;
+  padding: 2.4rem 2.6rem 2.4rem;
 }
 .announce-kicker {
   font-size: 1.4em;
@@ -264,7 +294,7 @@ html, body {
 .announce-dots span.on { background: var(--gold); }
 .announce-progress {
   position: absolute;
-  top: 0;
+  bottom: 0;
   right: 0;
   height: 0.3rem;
   background: var(--gold);

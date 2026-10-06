@@ -32,6 +32,10 @@ def inline_script(match):
 
 
 html = re.sub(r'<script src="([^"]+)"></script>', inline_script, html)
+
+import base64
+with open(os.path.join(ROOT, 'img/logo-window.png'), 'rb') as f:
+    html = html.replace('src="img/logo-window.png"', 'src="data:image/png;base64,' + base64.b64encode(f.read()).decode() + '"')
 # הנתונים צריכים להיטען לפני app.js
 html = html.replace('<script>\n(function () {\n  var C = CONFIG;', data_script + '\n<script>\n(function () {\n  var C = CONFIG;', 1)
 
