@@ -254,7 +254,8 @@
     var z = zmanimFor(now.date);
     var tomorrow = z.tzeit !== null && now.minutes >= z.tzeit + 30;
     if (tomorrow) z = zmanimFor(addDays(now.date, 1));
-    $('zmanim-title').textContent = tomorrow ? 'זמני מחר' : 'זמני היום';
+    // בלילה היום העברי הבא כבר התחיל ("אור ליום..."), אז כותבים את שם היום במקום "מחר"
+    $('zmanim-title').textContent = tomorrow ? 'זמני יום ' + DAYS[addDays(now.date, 1).getDay()] : 'זמני היום';
     renderTimes($('zmanim'), ZMANIM_ROWS.map(function (r) {
       return { label: r.label, t: z[r.id], key: r.key };
     }), tomorrow ? null : now.minutes);
@@ -704,7 +705,11 @@
   }
 
   function start() {
-    $('shul-name').textContent = C.name;
+    // "בית כנסת" בשורה קטנה ומרווחת, ושם בית הכנסת גדול מתחתיה
+    var nameParts = C.name.match(/^(בית (?:ה)?כנסת)\s+(.+)$/);
+    $('shul-name').innerHTML = nameParts
+      ? '<span class="shul-pre">' + esc(nameParts[1]) + '</span><span class="shul-main">' + esc(nameParts[2]) + '</span>'
+      : '<span class="shul-main">' + esc(C.name) + '</span>';
     $('shul-address').textContent = C.address;
     document.title = C.name;
 
