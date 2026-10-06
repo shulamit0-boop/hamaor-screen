@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>מסך בית הכנסת המאור</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700&family=Heebo:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="css/screen.css">
+</head>
+<body>
+<div class="screen" id="screen" dir="rtl">
+
+  <header class="top">
+    <div>
+      <h1 class="shul-name" id="shul-name">בית הכנסת המאור</h1>
+      <div class="shul-address" id="shul-address"></div>
+    </div>
+    <div class="date-block">
+      <div class="heb-date" id="heb-date"></div>
+      <div class="greg-date" id="greg-date"></div>
+      <div class="chips" id="chips"></div>
+    </div>
+    <div class="clock" id="clock"></div>
+  </header>
+
+  <main class="main">
+    <section class="col">
+      <div class="panel" style="flex:1">
+        <h2 class="panel-title" id="zmanim-title">זמני היום <small>לפי לוח חב"ד</small></h2>
+        <ul class="times" id="zmanim"></ul>
+      </div>
+    </section>
+
+    <section class="col">
+      <div class="panel announce" id="announce">
+        <div class="announce-progress" id="announce-progress"></div>
+        <div class="announce-body" id="announce-body"></div>
+        <div class="announce-dots" id="announce-dots"></div>
+      </div>
+      <div class="panel hayomyom">
+        <h2 class="panel-title"><span>היום יום</span> <small><span id="hayomyom-date"></span> · מתוך חב"דפדיה</small></h2>
+        <div class="hayomyom-text" id="hayomyom-text"></div>
+      </div>
+    </section>
+
+    <section class="col">
+      <div class="panel prayers">
+        <h2 class="panel-title" id="prayers-title">זמני תפילות</h2>
+        <ul class="times" id="prayers"></ul>
+      </div>
+      <div class="panel shabbat">
+        <h2 class="panel-title"><span id="shabbat-title">שבת</span> <small id="shabbat-sub"></small></h2>
+        <div class="shabbat-body" id="shabbat"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="chitas">
+    <div class="chitas-head">חת"ת</div>
+    <div class="chitas-item"><div class="k">חומש</div><div class="v" id="chitas-chumash"></div></div>
+    <div class="chitas-item"><div class="k">תהלים</div><div class="v" id="chitas-tehillim"></div></div>
+    <div class="chitas-item"><div class="k">תניא</div><div class="v" id="chitas-tanya"></div></div>
+    <div class="chitas-item"><div class="k">רמב"ם</div><div class="v" id="chitas-rambam"></div></div>
+  </footer>
+</div>
+
+<div class="status" id="status" dir="rtl"><span class="dot"></span><span id="status-text"></span></div>
+<div class="wake-hint" id="wake-hint" dir="rtl" hidden>לחצו OK בשלט כדי שהמסך יישאר דולק</div>
+
+<script src="lib/hebcal-core.min.js"></script>
+<script src="lib/NoSleep.min.js"></script>
+<script src="config.js"></script>
+<script src="js/zmanim.js"></script>
+<script src="js/learning.js"></script>
+<script src="js/sources.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
